@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome - Weather Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #00bcd4, #3f51b5);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .welcome-container {
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: glow 2s infinite alternate;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0.85;
+    }
+
+    button {
+      margin-top: 30px;
+      background-color: white;
+      color: #3f51b5;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #3f51b5;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #fff, 0 0 20px #03a9f4, 0 0 30px #03a9f4; }
+      100% { text-shadow: 0 0 20px #fff, 0 0 40px #2196f3, 0 0 60px #2196f3; }
+    }
+
+    /* Sun */
+    .sun {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #ffeb3b 40%, #fbc02d 100%);
+      border-radius: 50%;
+      position: absolute;
+      top: 15%;
+      right: 15%;
+      animation: rotateSun 12s linear infinite;
+      box-shadow: 0 0 40px 10px rgba(255, 235, 59, 0.4);
+    }
+
+    @keyframes rotateSun {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Cloud animation */
+    .cloud {
+      position: absolute;
+      top: 25%;
+      left: -150px;
+      width: 120px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      animation: moveCloud 30s linear infinite;
+      box-shadow:
+        60px 0 0 0 #fff,
+        120px 10px 0 0 #fff,
+        180px 0 0 0 #fff;
+      opacity: 0.85;
+    }
+
+    @keyframes moveCloud {
+      0% { left: -200px; }
+      100% { left: 110%; }
+    }
+
+    /* Fade-out transition before redirect */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sun"></div>
+  <div class="cloud"></div>
+
+  <div class="welcome-container" id="welcome">
+    <h1>Welcome to Weather Prediction ☁️</h1>
+    <p>Get real-time weather updates instantly</p>
+    <button onclick="goToMain()">Explore Now</button>
+  </div>
+
+  <script>
+    function goToMain() {
+      // Fade-out effect before redirect
+      const welcome = document.getElementById("welcome");
+      welcome.classList.add("fade-out");
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1000); // Redirect after fade
+    }
+
+    // Auto redirect after 5 seconds
+    window.addEventListener("load", () => {
+      setTimeout(goToMain, 5000);
+    });
+  </script>
+</body>
+</html>
